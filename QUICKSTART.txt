@@ -1,0 +1,67 @@
+XC430 Studio - quick start
+==========================
+
+Control several ROBOTIS DYNAMIXEL XC430 motors from one window: move them, tune them,
+change their settings, plot them live, and drive them from a keyboard or gamepad.
+
+
+1. START IT
+-----------
+Double-click XC430Studio.exe.
+(Windows may say "Windows protected your PC" because the program isn't signed:
+ click "More info" -> "Run anyway".)
+The single .exe takes a few seconds to start. The folder version (zip) starts instantly.
+
+No motors? Tick "Simulator" in the toolbar and press Connect to try everything safely.
+
+
+2. CONNECT YOUR MOTORS
+----------------------
+1. Plug the motors into the U2D2 (or OpenRB), power them (12 V), and plug the U2D2 into USB.
+2. Pick the port: COM3, COM4, ... (press the refresh button next to the port box if it's
+   not listed; Device Manager -> Ports shows which COM number the U2D2 got).
+3. Pick the baud rate. Factory default is 57,600. If the motors were changed to another rate
+   (1,000,000 is common), pick that one.
+4. Press Connect. The first time, it scans automatically. Use Scan -> "Scan all baud rates"
+   if you don't know the baud rate.
+Close Dynamixel Wizard first - only one program can use the port at a time.
+
+
+3. SAFETY - STOP
+----------------
+Any of these turns torque off on EVERY motor instantly:
+  * the red STOP button        * Ctrl+E (anywhere)
+  * Esc or Space during teleop * a gamepad button you choose (Teleop -> Gamepad)
+Turning torque on makes a motor hold where it is - it won't jump.
+Settings like ID, limits, mode and homing need torque off; the app does that for you
+and says so in the log at the bottom.
+
+
+4. WHAT'S WHERE
+---------------
+Dashboard     One card per motor: torque, position, goal slider, velocity, load, voltage,
+              temperature, and a Reboot button if a motor reports an error.
+Motor detail  The selected motor:
+                Control        torque, LED, mode, goal, speed limits, PID gains
+                Live plot      position / velocity / load over time
+                Control table  every register (double-click a value to change it)
+                Setup          ID, baud rate, limits, homing ("make this 180 deg"), reboot...
+Teleop        Press "Start teleop", then:
+                Keyboard         hold keys to move (default Q/A, W/S, E/D...), Shift = 3x speed
+                Gamepad          map a stick to each motor
+                Leader-follower  one motor copies another (move the leader by hand)
+                Poses            capture positions, then replay them in order
+
+Operating modes: Position (0-360 deg), Extended Position (multi-turn), Velocity, PWM.
+
+
+5. TIPS
+-------
+* Smoother control: set every motor to 1 Mbps (Setup tab), then reconnect at 1,000,000.
+* Even faster: Device Manager -> the U2D2's COM port -> Port Settings -> Advanced
+  -> Latency Timer = 1 ms.
+* Names, key bindings and poses are saved automatically when you close the app
+  (file: .xc430_studio.json in C:\Users\<you>). File -> Save workspace as... keeps setups.
+* Something wrong? The log is .xc430_studio.log in C:\Users\<you>.
+  Run "XC430Studio.exe --selftest report.txt" to check the program works on this computer
+  (uses the simulator only, never your motors).

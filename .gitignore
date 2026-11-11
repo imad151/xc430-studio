@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# PyInstaller output (release files are published on the GitHub Releases page)
+build/
+dist/
+release/
